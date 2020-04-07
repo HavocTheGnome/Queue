@@ -25,5 +25,6 @@ public:
     string getIndex(int index);
     string removeIndex(int index);
     void sortIndex();
+    int getcount();
 };
 #endif /* LLHW8_hpp */

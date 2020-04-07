@@ -34,13 +34,29 @@ string LinkedList::getFront()
 
 string LinkedList::removeFront()
 {
-    Node* nodeToReturn = this->head;
-    this->head = this->head->getNextNode();
-    this->head->setLastNode(0);
-    string val = nodeToReturn->getPayload();
-    delete nodeToReturn;
-    this->count--;
-    return val;
+    if(count == 1)
+    {
+        string val = this->head->getPayload();
+        this->head = 0;
+        this->butt = 0;
+        this->count--;
+        return val;
+    }
+    else if(count == 0)
+    {
+        return 0;
+    }
+    else
+    {
+        Node* nodeToReturn = this->head;
+        this->head = this->head->getNextNode();
+        this->head->setLastNode(0);
+        string val = nodeToReturn->getPayload();
+        delete nodeToReturn;
+        this->count--;
+        return val;
+    }
+    
 }
 
 Node* LinkedList::runToEndOfList()
@@ -48,6 +64,7 @@ Node* LinkedList::runToEndOfList()
     Node* currNode = this->head;
     while(currNode->getNextNode()) //returns true when currNode has a next node
     {
+        cout << currNode << "\n";
         currNode = currNode->getNextNode(); // (*currNode).getNextNode()
     }
     return currNode;
@@ -86,9 +103,18 @@ string LinkedList::removeEnd()
 {
     //we are assuming the list has at least one element in it for now
     //is this a list with a single element in it?
-    if(!this->head->getNextNode())
+    
+    if(count == 1)
     {
-        return this->removeFront();
+        string val = this->head->getPayload();
+        this->head = 0;
+        this->butt = 0;
+        this->count--;
+        return val;
+    }
+    else if(count == 0)
+    {
+        return 0;
     }
     else
     {
@@ -204,4 +230,8 @@ void LinkedList::sortIndex()
             }
         }
     }
+}
+int LinkedList::getcount()
+{
+    return count;
 }

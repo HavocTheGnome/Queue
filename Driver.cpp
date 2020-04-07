@@ -1,13 +1,19 @@
 #include <iostream>
 #include "StringFactory.hpp"
-
 int main()
 {
-    string s = "123+42-8*2+3+3";
-    LinkedList* intputQ = StringFactory::split(s);
-    for(int i = 0; i < 11; i++)
+    string never = "123*12/12+100-100";
+    LinkedList* inter = StringFactory::split(never);
+    int count = inter->getcount();
+    
+    LinkedList* intput = StringFactory::stringLL(never);
+    count = intput->getcount();
+    LinkedList* intputQ = StringFactory::nodeSplit(intput);
+    count = intputQ->getcount();
+    for(int i = 0; i < count; i++)
     {
-        string input = intputQ->getIndex(i);
-        cout << input << "\n";
+        cout << intputQ->removeFront() << "\n";
     }
+    return 0;
+    
 }
